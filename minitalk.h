@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elenasurovtseva <elenasurovtseva@studen    +#+  +:+       +#+        */
+/*   By: elsurovt <elsurovt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:37:26 by elenasurovt       #+#    #+#             */
-/*   Updated: 2024/07/31 15:38:57 by elenasurovt      ###   ########.fr       */
+/*   Updated: 2024/07/31 16:19:34 by elsurovt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 # define MINITALK_H
 
 # define WAIT_US  100
-# define MINITALK_H
-
-# define WAIT_US  100
 
 # include "libft/libft.h"
+# include <unistd.h>
 # include <signal.h>
 # include <stdlib.h> 
 
