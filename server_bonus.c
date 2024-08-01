@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elenasurovtseva <elenasurovtseva@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/31 14:44:49 by elenasurovt       #+#    #+#             */
-/*   Updated: 2024/08/01 12:34:04 by elenasurovt      ###   ########.fr       */
+/*   Created: 2024/08/01 12:56:16 by elenasurovt       #+#    #+#             */
+/*   Updated: 2024/08/01 12:56:51 by elenasurovt      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
 
 static void	server_is_message_finished(
 	t_protocol *t_server, int *i, pid_t client_pid)

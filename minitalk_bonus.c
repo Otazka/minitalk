@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.c                                         :+:      :+:    :+:   */
+/*   minitalk_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elenasurovtseva <elenasurovtseva@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/31 15:35:43 by elenasurovt       #+#    #+#             */
-/*   Updated: 2024/08/01 12:37:41 by elenasurovt      ###   ########.fr       */
+/*   Created: 2024/08/01 12:55:13 by elenasurovt       #+#    #+#             */
+/*   Updated: 2024/08/01 12:55:49 by elenasurovt      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
 
 void	configure_sigaction_signals(struct sigaction *sa)
 {

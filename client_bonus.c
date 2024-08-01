@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elenasurovtseva <elenasurovtseva@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/31 14:44:53 by elenasurovt       #+#    #+#             */
-/*   Updated: 2024/08/01 12:35:47 by elenasurovt      ###   ########.fr       */
+/*   Created: 2024/08/01 12:54:08 by elenasurovt       #+#    #+#             */
+/*   Updated: 2024/08/01 12:54:40 by elenasurovt      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
 
 static void	client_handler(int sig)
 {
