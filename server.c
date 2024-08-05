@@ -6,7 +6,7 @@
 /*   By: elenasurovtseva <elenasurovtseva@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 14:44:49 by elenasurovt       #+#    #+#             */
-/*   Updated: 2024/08/06 00:20:40 by elenasurovt      ###   ########.fr       */
+/*   Updated: 2024/08/06 00:27:57 by elenasurovt      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	signal_handler(int signum)
 {
 	static int	counter = 0;
 	static int	result = 0;
-	static int	len = 0;
+	//static int	len = 0;
 	static char	*final;
 
 	if (!final)
@@ -71,7 +71,7 @@ void	signal_handler(int signum)
 		}
 		counter = 0;
 		result = 0;
-		len += 1;
+		//len += 1;
 	}
 }
 
