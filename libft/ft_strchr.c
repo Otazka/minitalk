@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elenasurovtseva <elenasurovtseva@studen    +#+  +:+       +#+        */
+/*   By: elsurovt <elsurovt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/01 15:03:08 by elenasurovt       #+#    #+#             */
-/*   Updated: 2024/08/05 23:59:08 by elenasurovt      ###   ########.fr       */
+/*   Created: 2024/05/25 22:43:19 by elsurovt          #+#    #+#             */
+/*   Updated: 2024/06/01 11:46:36 by elsurovt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <signal.h>
-# include "libft.h"
-# include "ft_printf.h"
+#include "libft.h"
 
-#endif
+char	*ft_strchr(const char *str, int c)
+{
+	while (*str != (char)c)
+	{
+		if (*str == '\0')
+			return (NULL);
+		str++;
+	}
+	return ((char *)str);
+}

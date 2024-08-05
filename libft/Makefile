@@ -1,0 +1,90 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: elenasurovtseva <elenasurovtseva@studen    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/05/31 12:23:32 by elenasurovt       #+#    #+#              #
+#    Updated: 2024/08/05 23:59:05 by elenasurovt      ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = libft.a
+CC = cc
+CFLAGS = -Wall -Werror -Wextra -g3
+AR = ar rcs
+SRC = ft_isalpha \
+	ft_isdigit \
+	ft_isalnum \
+	ft_isascii \
+	ft_isprint \
+	ft_strlen \
+	ft_memset \
+	ft_bzero \
+	ft_memcpy \
+	ft_memmove \
+	ft_strlcpy \
+	ft_strlcat \
+	ft_toupper \
+	ft_tolower \
+	ft_strchr \
+	ft_strrchr \
+	ft_strncmp \
+	ft_memchr \
+	ft_memcmp \
+	ft_strnstr \
+	ft_atoi \
+	ft_calloc \
+	ft_strdup \
+	ft_substr \
+	ft_strjoin \
+	ft_strtrim \
+	ft_split \
+	ft_itoa \
+	ft_strmapi \
+	ft_striteri \
+	ft_putchar_fd \
+	ft_putstr_fd \
+	ft_putendl_fd \
+	ft_putnbr_fd
+	ft_lstnew \
+	ft_lstadd_front \
+	ft_lstsize \
+	ft_lstlast \
+	ft_lstadd_back \
+	ft_lstdelone \
+	ft_lstclear \
+	ft_lstiter \
+	ft_lstmap  \
+	ft_printf \ 
+	ft_number \
+	ft_pointer \
+	ft_hexadecimal \
+	ft_unsigned_int \
+	ft_putcharacter_length \
+	ft_string \
+	ft_get_next_line \
+
+
+SRCS = $(addsuffix .c, $(SRC))
+OBJS = $(addsuffix .o, $(SRC))
+
+.c.o: $(SRCS)
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+$(NAME): $(OBJS)
+	$(AR) $@ $^
+
+
+all: $(NAME)
+
+clean:
+	rm -f *.o
+
+fclean: clean
+	rm -f $(NAME)
+
+re: clean all
+
+.PHONY: all clean fclean re 

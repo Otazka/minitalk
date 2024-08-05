@@ -1,22 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_words.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elenasurovtseva <elenasurovtseva@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/01 15:03:08 by elenasurovt       #+#    #+#             */
-/*   Updated: 2024/08/05 23:59:08 by elenasurovt      ###   ########.fr       */
+/*   Created: 2024/06/15 15:20:04 by elenasurovt       #+#    #+#             */
+/*   Updated: 2024/06/18 10:20:34 by elenasurovt      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <signal.h>
-# include "libft.h"
-# include "ft_printf.h"
+#include "../incl/ft_printf.h"
 
-#endif
+void	ft_putcharacter_length(char character, int *length)
+{
+	write(1, &character, 1);
+	(*length)++;
+}
+
+void	ft_string(char *args, int *length)
+{
+	size_t	i;
+
+	i = 0;
+	if (!args)
+	{
+		write(1, "(null)", 6);
+		(*length) += 6;
+		return ;
+	}
+	while (args[i] != '\0')
+	{
+		ft_putcharacter_length(args[i], length);
+		i++;
+	}
+}
