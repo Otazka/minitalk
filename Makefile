@@ -6,48 +6,52 @@
 #    By: elenasurovtseva <elenasurovtseva@studen    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/31 15:41:02 by elenasurovt       #+#    #+#              #
-#    Updated: 2024/08/01 15:01:41 by elenasurovt      ###   ########.fr        #
+#    Updated: 2024/08/05 23:09:04 by elenasurovt      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SERVER = server
+SRCS	= client.c server.c
 
-CLIENT = client
+OBJS	:= $(SRCS:%.c=%.o)
 
-SRCS1 = server.c
+NAME	= minitalk
 
-SRCS2 = client.c
+CC		= gcc
+RM		= rm -f
 
-OBJS1 = ${SRCS1:.c=.o}
+CFLAGS 	= -Wall -Wextra -Werror
 
-OBJS2 = ${SRCS2:.c=.o}
+all:		${NAME}
 
-HEADERS = minitalk.h
+%.o:	%.c
+		${CC} ${CFLAGS} -Ilibft -Iprintf -c $? -o $@
 
-CFLAGS = -Werror -Wall -Wextra -g
+${NAME}:	 server client
 
-.c.o:
-			@cc ${CFLAGS} -c $^ -o $@
+server:		server.o
+		@make -C libft
+		@make -C printf
+		${CC} ${CFLAGS} $? -Llibft -lft -Lprintf -lftprintf -o server
 
-all:		${SERVER} ${CLIENT}
+client:		client.o
+		@make -C libft
+		@make -C printf
+		${CC} ${CFLAGS} $? -Llibft -lft -Lprintf -lftprintf -o client
 
-$(SERVER):	${OBJS1}
-					@cc ${OBJS1} $(CFLAGS) -o $(SERVER)
-					@echo "Server compiled!"
+libft:
+		make -C libft
 
-$(CLIENT):	${OBJS2}
-					@cc ${OBJS2} $(CFLAGS) -o $(CLIENT)
-					@echo "Client compiled!"
+printf:
+		make -C printf
 
 clean:
-			@rm -f ${OBJS1}
-			@rm -f ${OBJS2}
+			make clean -C libft
+			make clean -C printf
+			${RM} ${OBJS}
 
 fclean:		clean
-			@rm -f ${SERVER}
-			@rm -f ${CLIENT}
-			@echo "All clean!"
+			${RM} server client
 
-re: fclean all
+re:			fclean all
 
-.PHONY: all clean fclean re
+.PHONY:		libft printf

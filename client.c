@@ -6,77 +6,64 @@
 /*   By: elenasurovtseva <elenasurovtseva@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 14:44:53 by elenasurovt       #+#    #+#             */
-/*   Updated: 2024/08/01 15:00:42 by elenasurovt      ###   ########.fr       */
+/*   Updated: 2024/08/05 23:06:45 by elenasurovt      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-int	ft_atoi(const char *str)
+void	send_signals(int pid, char *message)
 {
-	int	i;
-	int	neg;
-	int	nb;
+	int				letter;
+	int				i;
 
-	i = 0;
-	neg = 1;
-	nb = 0;
-	if (str[i] == 7 || str[i] == 8)
-		return (0);
-	while (str[i] == ' ' || (str[i] <= 13 && str[i] >= 7))
-		i++;
-	if (str[i] == '-')
-		neg = neg * -1;
-	if (str[i] == '+' || str [i] == '-')
-		i++;
-	while (str[i] >= 48 && str[i] <= 57)
+	letter = 0;
+	while (message[letter])
 	{
-		nb = nb * 10 + (str[i] - 48);
-		i++;
+		i = -1;
+		while (++i < 8)
+		{
+			if (((unsigned char)(message[letter] >> (7 - i)) & 1) == 0)
+				kill(pid, SIGUSR1);
+			else if (((unsigned char)(message[letter] >> (7 - i)) & 1) == 1)
+				kill(pid, SIGUSR2);
+			usleep(50);
+		}
+	letter++;
 	}
-	return (neg * nb);
-}
-
-void	char_to_bin(char c, int pid)
-{
-	int	bit;
-
-	bit = 0;
-	while (bit < 8)
+	i = 0;
+	while (i++ < 8)
 	{
-		if ((c >> bit) & 1)
-			kill(pid, SIGUSR2);
-		else
-			kill(pid, SIGUSR1);
-		bit++;
+		kill(pid, SIGUSR1);
 		usleep(50);
 	}
 }
 
-void	sig_handler(int sig)
+int	main(int argc, char **argv)
 {
-	if (sig == SIGUSR1)
-		printf("Message has been received by server!\n");
-}
+	char				*message;
+	int					server_id;
 
-int	main(int argc, char *argv[])
-{
-	int	pid;
-	int	i;
-
-	i = 0;
 	if (argc == 3)
 	{
-		pid = ft_atoi(argv[1]);
-		while (argv[2][i] != '\0')
+		server_id = ft_atoi(argv[1]);
+		if (!server_id)
 		{
-			char_to_bin(argv[2][i], pid);
-			i++;
+			ft_printf("[ERROR]. Wrong arg");
+			return (0);
 		}
-		signal(SIGUSR1, sig_handler);
-		char_to_bin('\0', pid);
+		message = argv[2];
+		if (message[0] == 0)
+		{
+			ft_printf("Tu n'as envoyé aucun texte ! Ecris qqch pls :)");
+			return (0);
+		}
+		send_signals(server_id, message);
 	}
 	else
-		printf("Error\n");
+	{
+		ft_printf("[ERROR]. Too much or too few arguments.\n Make sure ");
+		ft_printf("you enter arguments as follow: ./client <PID> <MESSAGE>");
+	}
 	return (0);
 }

@@ -6,52 +6,85 @@
 /*   By: elenasurovtseva <elenasurovtseva@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 14:44:49 by elenasurovt       #+#    #+#             */
-/*   Updated: 2024/08/01 15:01:11 by elenasurovt      ###   ########.fr       */
+/*   Updated: 2024/08/05 23:05:36 by elenasurovt      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	bin_to_char(int sig, siginfo_t *info, void *context)
+int	ft_recursive_power(int nb, int power)
 {
-	static int	bit;
-	static int	c;
+	int	res;
 
-	(void)context;
-	if (sig == SIGUSR2)
-		c |= (1 << bit);
-	bit++;
-	if (bit == 8)
+	if (power == 0)
+		return (1);
+	else if (power < 0)
+		return (0);
+	else
 	{
-		if (c == 0)
-			kill(info->si_pid, SIGUSR1);
-		write(1, &c, 1);
-		bit = 0;
-		c = 0;
+		res = nb * ft_recursive_power(nb, power - 1);
+		return (res);
 	}
 }
 
-int	main(int argc, char *argv[])
+char	*letter_to_string(char const *s1, char const letter)
 {
-	int					pid;
-	struct sigaction	sa;
+	int		i;
+	int		j;
+	char	*tab;
 
-	(void)argv;
-	if (argc != 1)
+	i = 0;
+	j = 0;
+	tab = malloc((ft_strlen(s1) + 2) * sizeof(char));
+	if (!tab)
+		return (NULL);
+	while (s1[i])
+		tab[j++] = s1[i++];
+	i = 0;
+	tab[j++] = letter;
+	tab[j] = 0;
+	free ((void *)(s1));
+	return (tab);
+}
+
+void	signal_handler(int signum)
+{
+	static int	counter = 0;
+	static int	result = 0;
+	static int	len = 0;
+	static char	*final;
+
+	if (!final)
+		final = ft_strdup("");
+	if (signum == SIGUSR1)
+		result = result + 0;
+	else if (signum == SIGUSR2)
+		result = result + (1 * ft_recursive_power(2, 7 - counter));
+	counter++;
+	if (counter == 8)
 	{
-		printf("Error\n");
-		return (1);
+		final = letter_to_string(final, result);
+		if (result == '\0')
+		{
+			ft_printf("%s\n", final);
+			final = NULL;
+		}
+		counter = 0;
+		result = 0;
+		len += 1;
 	}
-	pid = getpid();
-	printf("%d\n", pid);
-	sa.sa_sigaction = bin_to_char;
-	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = SA_SIGINFO;
-	while (argc == 1)
-	{
-		sigaction(SIGUSR1, &sa, NULL);
-		sigaction(SIGUSR2, &sa, NULL);
-		pause();
-	}
-	return (0);
+}
+
+int	main(void)
+{
+	struct sigaction	signal_received;
+
+	ft_printf("Welcome to lfabbian's server :-)\n");
+	ft_printf("Server's PID: %d\n", getpid());
+	signal_received.sa_handler = signal_handler;
+	signal_received.sa_flags = 0;
+	sigaction(SIGUSR1, &signal_received, NULL);
+	sigaction(SIGUSR2, &signal_received, NULL);
+	while (1)
+		usleep(50);
 }
