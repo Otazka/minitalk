@@ -6,7 +6,7 @@
 /*   By: elenasurovtseva <elenasurovtseva@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 03:20:09 by elsurovt          #+#    #+#             */
-/*   Updated: 2024/08/06 00:16:59 by elenasurovt      ###   ########.fr       */
+/*   Updated: 2024/08/06 00:24:58 by elenasurovt      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,6 @@ void	ft_hexadecimal(unsigned int x, int *length, char x_or_x);
 void	ft_unsigned_int(unsigned int u, int *length);
 void	ft_putcharacter_length(char character, int *length);
 void	ft_string(char *args, int *length);
+int	ft_printf(const char *string, ...);
 
 #endif
