@@ -6,11 +6,11 @@
 /*   By: elenasurovtseva <elenasurovtseva@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 15:20:04 by elenasurovt       #+#    #+#             */
-/*   Updated: 2024/06/18 10:20:34 by elenasurovt      ###   ########.fr       */
+/*   Updated: 2024/08/06 00:07:03 by elenasurovt      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/ft_printf.h"
+#include "libft.h"
 
 void	ft_putcharacter_length(char character, int *length)
 {

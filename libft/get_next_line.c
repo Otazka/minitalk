@@ -6,11 +6,11 @@
 /*   By: elenasurovtseva <elenasurovtseva@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 13:21:07 by elenasurovt       #+#    #+#             */
-/*   Updated: 2024/07/01 12:54:10 by elenasurovt      ###   ########.fr       */
+/*   Updated: 2024/08/06 00:06:38 by elenasurovt      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
 char	*read_file(int fd, char *stash)
 {
