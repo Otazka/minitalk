@@ -6,7 +6,7 @@
 /*   By: elenasurovtseva <elenasurovtseva@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 03:20:09 by elsurovt          #+#    #+#             */
-/*   Updated: 2024/08/06 00:14:25 by elenasurovt      ###   ########.fr       */
+/*   Updated: 2024/08/06 00:16:59 by elenasurovt      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,19 +91,18 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 #  define MAX_F_OPENED 1024
 # endif
 
-char	*get_next_line(int fd);
-
-#endif
-
 # ifdef __APPLE__
 #  define PTR_NULL "0x0"
 # else
 #  define PTR_NULL "(nil)"
 # endif
 
+char	*get_next_line(int fd);
 void	ft_number(int number, int *length);
 void	ft_pointer(size_t pointer, int *length);
 void	ft_hexadecimal(unsigned int x, int *length, char x_or_x);
 void	ft_unsigned_int(unsigned int u, int *length);
 void	ft_putcharacter_length(char character, int *length);
 void	ft_string(char *args, int *length);
+
+#endif
