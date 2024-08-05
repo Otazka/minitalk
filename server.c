@@ -6,7 +6,7 @@
 /*   By: elenasurovtseva <elenasurovtseva@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 14:44:49 by elenasurovt       #+#    #+#             */
-/*   Updated: 2024/08/05 23:59:07 by elenasurovt      ###   ########.fr       */
+/*   Updated: 2024/08/06 00:20:40 by elenasurovt      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ int	main(void)
 {
 	struct sigaction	signal_received;
 
-	ft_printf("Welcome to lfabbian's server :-)\n");
-	ft_printf("Server's PID: %d\n", getpid());
+	ft_printf("Welcome to elsurovt's server :-)\n");
+	ft_printf("Server's PID: %d\n\n", getpid());
 	signal_received.sa_handler = signal_handler;
 	signal_received.sa_flags = 0;
 	sigaction(SIGUSR1, &signal_received, NULL);

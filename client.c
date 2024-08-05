@@ -6,7 +6,7 @@
 /*   By: elenasurovtseva <elenasurovtseva@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 14:44:53 by elenasurovt       #+#    #+#             */
-/*   Updated: 2024/08/05 23:25:03 by elenasurovt      ###   ########.fr       */
+/*   Updated: 2024/08/06 00:23:14 by elenasurovt      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	main(int argc, char **argv)
 		message = argv[2];
 		if (message[0] == 0)
 		{
-			ft_printf("Tu n'as envoyé aucun texte ! Ecris qqch pls :)");
+			ft_printf("You didn't send any text! Write sth pls :)");
 			return (0);
 		}
 		send_signals(server_id, message);
