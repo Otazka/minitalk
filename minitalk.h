@@ -6,7 +6,7 @@
 /*   By: elenasurovtseva <elenasurovtseva@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 15:03:08 by elenasurovt       #+#    #+#             */
-/*   Updated: 2024/08/06 00:13:22 by elenasurovt      ###   ########.fr       */
+/*   Updated: 2024/08/06 08:52:39 by elenasurovt      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <signal.h>
-# include "libft.h"
+# include "../libft/libft.h"
 
 #endif
