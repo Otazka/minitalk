@@ -6,38 +6,47 @@
 #    By: elenasurovtseva <elenasurovtseva@studen    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/31 15:41:02 by elenasurovt       #+#    #+#              #
-#    Updated: 2024/08/06 08:50:47 by elenasurovt      ###   ########.fr        #
+#    Updated: 2024/08/06 09:20:34 by elenasurovt      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+LIBFT = libft/libft.a
+
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
-NAME_CLIENT = client
-NAME_SERVER = server
-LIBFT = ./libft/libft.a
+CCFLAGS = cc -Wall -Werror -Wextra
 
-SRC_CLIENT = client.c
-OBJ_CLIENT = $(SRC_CLIENT:.c=.o)
+SERVER = server
+CLIENT = client
+SRCS_SERVER = server.c
+SRCS_CLIENT = client.c
+SRCS_SERVER_BONUS = server_bonus.c
+SRCS_CLIENT_BONUS = client_bonus.c
 
-SRC_SERVER = server.c
-OBJ_SERVER = $(SRC_SERVER:.c=.o)
+OBJS_SERVER = $(SRCS_SERVER:.c=.o)
+OBJS_CLIENT = $(SRCS_CLIENT:.c=.o)
+OBJS_SERVER_BONUS = $(SRCS_SERVER_BONUS:.c=.o)
+OBJS_CLIENT_BONUS = $(SRCS_CLIENT_BONUS:.c=.o)
 
-all: $(NAME_CLIENT) $(NAME_SERVER)
 
-$(NAME_CLIENT): $(OBJ_CLIENT)
-	$(MAKE) --no-print-directory -C ./libft
-	$(CC) $(CFLAGS) $(OBJ_CLIENT) $(LIBFT) -o $(NAME_CLIENT)
+all: $(SERVER) $(CLIENT)
 
-$(NAME_SERVER): $(OBJ_SERVER)
-	$(MAKE) --no-print-directory -C ./libft
-	$(CC) $(CFLAGS) $(OBJ_SERVER) $(LIBFT) -o $(NAME_SERVER)
+$(SERVER) $(CLIENT): $(OBJS_SERVER) $(OBJS_CLIENT) $(LIBFT)
+		${CCFLAGS} ${OBJS_SERVER} libft/libft.a -o ${SERVER}
+		${CCFLAGS} ${OBJS_CLIENT} libft/libft.a -o ${CLIENT}
 
-clean:
-	$(MAKE) clean -C ./libft
-	rm -rf $(OBJ_CLIENT) $(OBJ_SERVER)
+$(LIBFT):
+		${MAKE} -C ./libft
 
-fclean: clean
-	$(MAKE) fclean -C ./libft
-	rm -rf $(NAME_CLIENT) $(NAME_SERVER)
+bonus: ${OBJS_SERVER_BONUS} ${OBJS_CLIENT_BONUS} ${LIBFT}
+		${CCFLAGS} ${OBJS_SERVER_BONUS} libft/libft.a -o ${SERVER}
+		${CCFLAGS} ${OBJS_CLIENT_BONUS} libft/libft.a -o ${CLIENT}
 
-re: fclean all
+clean:	
+		$(MAKE) clean -C ./libft
+		rm -rf ${OBJS_SERVER} ${OBJS_CLIENT} ${OBJS_SERVER_BONUS} ${OBJS_CLIENT_BONUS}
+
+fclean:	clean
+		$(MAKE) fclean -C ./libft
+		rm -rf $(SERVER) $(CLIENT)
+
+re:	fclean all
