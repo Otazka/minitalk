@@ -6,47 +6,38 @@
 #    By: elenasurovtseva <elenasurovtseva@studen    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/31 15:41:02 by elenasurovt       #+#    #+#              #
-#    Updated: 2024/08/06 00:34:57 by elenasurovt      ###   ########.fr        #
+#    Updated: 2024/08/06 08:49:29 by elenasurovt      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	= client.c server.c
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
+NAME_CLIENT = client
+NAME_SERVER = server
+LIBFT = ./libft/libft.a
 
-OBJS	:= $(SRCS:%.c=%.o)
+SRC_CLIENT = src/client.c
+OBJ_CLIENT = $(SRC_CLIENT:.c=.o)
 
-NAME	= minitalk
+SRC_SERVER = src/server.c
+OBJ_SERVER = $(SRC_SERVER:.c=.o)
 
-CC		= gcc
-RM		= rm -f
+all: $(NAME_CLIENT) $(NAME_SERVER)
 
-CFLAGS 	= -Wall -Wextra -Werror
+$(NAME_CLIENT): $(OBJ_CLIENT)
+	$(MAKE) --no-print-directory -C ./libft
+	$(CC) $(CFLAGS) $(OBJ_CLIENT) $(LIBFT) -o $(NAME_CLIENT)
 
-all:		${NAME}
-
-%.o:	%.c
-		${CC} ${CFLAGS} -Ilibft -c $? -o $@
-
-${NAME}:	 server client
-
-server:		server.o
-		@make -C libft
-		${CC} ${CFLAGS} $? -Llibft -lft -o server
-
-client:		client.o
-		@make -C libft
-		${CC} ${CFLAGS} $? -Llibft -lft -o client
-
-libft:
-		make -C libft
-
+$(NAME_SERVER): $(OBJ_SERVER)
+	$(MAKE) --no-print-directory -C ./libft
+	$(CC) $(CFLAGS) $(OBJ_SERVER) $(LIBFT) -o $(NAME_SERVER)
 
 clean:
-			make clean -C libft
-			${RM} ${OBJS}
+	$(MAKE) clean -C ./libft
+	rm -rf $(OBJ_CLIENT) $(OBJ_SERVER)
 
-fclean:		clean
-			${RM} server client
+fclean: clean
+	$(MAKE) fclean -C ./libft
+	rm -rf $(NAME_CLIENT) $(NAME_SERVER)
 
-re:			fclean all
-
-.PHONY:		libft
+re: fclean all
